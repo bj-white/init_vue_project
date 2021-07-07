@@ -1,20 +1,15 @@
 <template>
-  <div>{{ msg.name }}</div>
+  <div>hello world</div>
 </template>
 
 <script>
-import bus from '../util/bus.js';
 export default {
   data () {
-    return {
-      msg: bus.msg,
-    };
+    return {};
   },
   computed: {},
   created () {
-    setTimeout(() => {
-      this.msg.name = 'aaaaaaa';
-    }, 1000);
+    console.log('----' + process.env.NODE_ENV);
   }
 };
 </script>

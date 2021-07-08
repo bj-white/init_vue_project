@@ -55,7 +55,7 @@ export default {
     return {
       formInline: {
         user: '',
-        region: '',
+        region: '', 
         date: '',
       }
     };

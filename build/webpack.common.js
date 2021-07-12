@@ -2,6 +2,8 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const utils = require('./utils.js');
 
 module.exports = {
   entry: {
@@ -9,7 +11,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -32,7 +34,11 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [
-          'vue-style-loader',
+          process.env.NODE_ENV === 'development'
+            ? 'vue-style-loader'
+            : {
+              loader: MiniCssExtractPlugin.loader,
+            },
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -44,7 +50,7 @@ module.exports = {
         options: {
           esModule: false,
           limit: 10000,
-          // name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          name: utils.assetsPath('img/[name].[hash:7].[ext]'),
         },
       },
       {
@@ -53,7 +59,7 @@ module.exports = {
         options: {
           esModule: false,
           limit: 10000,
-          // name: utils.assetsPath('media/[name].[hash:7].[ext]'),
+          name: utils.assetsPath('media/[name].[hash:7].[ext]'),
         },
       },
       {
@@ -62,7 +68,7 @@ module.exports = {
         options: {
           esModule: false,
           limit: 10000,
-          // name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
         },
       },
     ]

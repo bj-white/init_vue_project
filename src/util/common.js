@@ -1,5 +1,5 @@
 // 节流
-export function throttle (fn, delay = 500) {
+export function throttle (fn, delay = 1000) {
   let timer;
   return function () {
     if (timer) {

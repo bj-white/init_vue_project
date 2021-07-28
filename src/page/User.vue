@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie';
 import { throttle, debounce } from '../util/common.js';
 export default {
   data () {
@@ -22,6 +23,8 @@ export default {
   created () {
     this.handleClick = debounce(this.handleClick);
     this.handleThrottle = throttle(this.handleClick);
+
+    Cookie.set('token', 'abc');
   },
   methods: {
     handleClick (num) {

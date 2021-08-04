@@ -1,21 +1,15 @@
+import * as testApi from '../../api/testApi.js';
+
 export default {
   namespaced: true,
-  state: {
-    test: 'hello world',
-  },
-  mutations: {
-    SET_TEST: (state, test) => {
-      state.test = test;
-    }
-  },
+  state: {},
+  mutations: {},
   actions: {
-    setTest ({ commit }) {
+    getTest () {
       return new Promise((resolve) => {
-        setTimeout(() => {
-          const msg = 'hello white';
-          commit('SET_TEST', msg);
-          resolve(msg);
-        }, 1000);
+        testApi.getTest().then((response) => {
+          resolve(response);
+        });
       });
     }
   }

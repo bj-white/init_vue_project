@@ -1,41 +1,40 @@
 <template>
   <div>
-    <el-button @click="handleClick(1)">
-      click me
-    </el-button>
-    <el-button @click="handleThrottle(2)">
+    <el-button
+      size="small"
+      type="primary"
+      @click="handleDebounce"
+    >
       click throttle
     </el-button>
+    <div class="primary">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptatem, architecto aliquid harum dolor porro cumque libero deserunt, aperiam possimus ea dicta pariatur fugiat vero esse ipsum impedit rerum iure?
+    </div>
   </div>
 </template>
 
 <script>
-import Cookie from 'js-cookie';
-import { throttle, debounce } from '../util/common.js';
+import { debounce } from '../util/common.js';
 export default {
   data () {
-    return {
-      msg1: 'hello 1',
-      msg2: 'hello 2',
-    };
+    return {};
   },
   computed: {},
   created () {
-    this.handleClick = debounce(this.handleClick);
-    this.handleThrottle = throttle(this.handleClick);
-
-    Cookie.set('token', 'abc');
+    this.handleDebounce = debounce(this.handleDebounce);
   },
   methods: {
-    handleClick (num) {
-      console.log(this['msg' + num]);
+    handleDebounce () {
+      this.$store.dispatch('test/getTest').then((response) => {
+        console.log(response);
+      });
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
-div {
-  border: 1px solid #ddd;
-}
+<style lang="scss" scoped>
+  .primary {
+    color: $--color-primary;
+  }
 </style>

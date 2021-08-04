@@ -1,2 +1,2 @@
 # init_vue_project
-初学者vue脚手架
+vue脚手架

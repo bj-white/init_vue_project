@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const utils = require('./utils.js');
+const config = require('../config/index.js');
 
 module.exports = {
   entry: {
     main: './src/main.js'
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: config.assetsRoot,
   },
   module: {
     rules: [
@@ -42,6 +42,15 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              sourceMap: true,
+              resources: [
+                path.resolve(__dirname, '../src/style/vars.scss')
+              ]
+            }
+          }
         ]
       },
       {
@@ -84,5 +93,10 @@ module.exports = {
         to: 'static',
       }
     ]),
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 };

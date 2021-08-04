@@ -1,11 +1,7 @@
 import request from '../util/request.js';
 
-export function getTest (id) {
+export function getTest () {
   return request({
-    url: '',
-    method: 'get',
-    params: {
-      id
-    }
+    url: '/api/getUser',
   });
 }

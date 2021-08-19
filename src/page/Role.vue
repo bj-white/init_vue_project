@@ -1,13 +1,18 @@
 <template>
-  <div>{{ msg.name }}</div>
+  <div>
+    <ul>
+      <li v-for="(item, key) in list" v-show="true" :key="key">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import bus from '../util/bus.js';
 export default {
   data () {
     return {
-      msg: bus.msg,
+      list: [1, 2, 3]
     };
   },
   computed: {},

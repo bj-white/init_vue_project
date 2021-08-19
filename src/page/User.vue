@@ -8,7 +8,10 @@
       click throttle
     </el-button>
     <div class="primary">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur voluptatem, architecto aliquid harum dolor porro cumque libero deserunt, aperiam possimus ea dicta pariatur fugiat vero esse ipsum impedit rerum iure?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+      voluptatem, architecto aliquid harum dolor porro cumque libero deserunt,
+      aperiam possimus ea dicta pariatur fugiat vero esse ipsum impedit rerum
+      iure?
     </div>
   </div>
 </template>
@@ -22,10 +25,15 @@ export default {
   computed: {},
   created () {
     this.handleDebounce = debounce(this.handleDebounce);
+    this.$axios({
+      url: '/api/getUserList'
+    }).then(response => {
+      console.log(response);
+    });
   },
   methods: {
     handleDebounce () {
-      this.$store.dispatch('test/getTest').then((response) => {
+      this.$store.dispatch('test/getTest').then(response => {
         console.log(response);
       });
     }
@@ -34,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .primary {
-    color: $--color-primary;
-  }
+.primary {
+  color: $--color-primary;
+}
 </style>

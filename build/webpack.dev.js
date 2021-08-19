@@ -7,13 +7,15 @@ module.exports = merge(common, {
   },
   mode: 'development',
   devtool: 'inline-source-map',
-  /* devServer: {
-    proxy: {
+  devServer: {
+    port: 8090,
+    disableHostCheck: true,
+    /* proxy: {
       '/api': {
         target: 'http://localhost:8080',
         pathRewrite: {'^/api': ''},
         changeOrigin: true,
       }
-    }
-  } */
+    } */
+  }
 });

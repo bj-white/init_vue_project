@@ -17,19 +17,19 @@
 </template>
 
 <script>
-import { debounce } from '../util/common.js';
+// import { debounce } from '../util/common.js';
 export default {
   data () {
     return {};
   },
   computed: {},
   created () {
-    this.handleDebounce = debounce(this.handleDebounce);
+    /* this.handleDebounce = debounce(this.handleDebounce);
     this.$axios({
       url: '/api/getUserList'
     }).then(response => {
       console.log(response);
-    });
+    }); */
   },
   methods: {
     handleDebounce () {

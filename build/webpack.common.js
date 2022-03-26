@@ -6,6 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const utils = require('./utils.js');
 const config = require('../config/index.js');
 
+const createLintingRule = () => ({
+  test: /\.(js|vue)$/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: path.resolve(__dirname, '../src'),
+});
+
 module.exports = {
   entry: {
     main: './src/main.js'
@@ -15,12 +22,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        use: ['eslint-loader'],
-        enforce: 'pre',
-        include: path.resolve(__dirname, '../src')
-      },
+      ...(config.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         use: ['vue-loader'],

@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const config = require('../config/index.js');
 
 module.exports = merge(common, {
   output: {
@@ -8,7 +9,8 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 8090,
+    host: config.host,
+    port: config.port,
     disableHostCheck: true,
     /* proxy: {
       '/api': {

@@ -5,6 +5,8 @@ const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const utils = require('./utils.js');
 const config = require('../config/index.js');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const createLintingRule = () => ({
   test: /\.(js|vue)$/,
@@ -19,6 +21,8 @@ module.exports = {
   },
   output: {
     path: config.assetsRoot,
+    filename: utils.assetsPath('js/[name].[chunkhash].js'),
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].js'),
   },
   module: {
     rules: [
@@ -36,11 +40,7 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [
-          process.env.NODE_ENV === 'development'
-            ? 'vue-style-loader'
-            : {
-              loader: MiniCssExtractPlugin.loader,
-            },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           'sass-loader',
@@ -85,6 +85,12 @@ module.exports = {
     ]
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: utils.assetsPath('css/[contenthash].css'),
+      chunkFilename: utils.assetsPath('css/[contenthash].css'),
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),

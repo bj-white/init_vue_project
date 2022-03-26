@@ -8,6 +8,7 @@ module.exports = {
       "singleline": {
         "max": 3,
       }
-    }]
+    }],
+    'no-debugger': 'off',
   }
 };

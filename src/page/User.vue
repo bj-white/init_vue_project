@@ -5,7 +5,7 @@
       type="primary"
       @click="handleDebounce"
     >
-      click throttle
+      click throttlesss
     </el-button>
     <div class="primary">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
@@ -17,19 +17,20 @@
 </template>
 
 <script>
-import { debounce } from '../util/common.js';
+// import { debounce } from '../util/common.js';
+import '../style/vars.scss';
 export default {
   data () {
     return {};
   },
   computed: {},
   created () {
-    this.handleDebounce = debounce(this.handleDebounce);
+    /* this.handleDebounce = debounce(this.handleDebounce);
     this.$axios({
-      url: '/api/getUserList'
+      url: '/api'
     }).then(response => {
       console.log(response);
-    });
+    }); */
   },
   methods: {
     handleDebounce () {
